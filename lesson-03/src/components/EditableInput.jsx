@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-// TODO: не сабмитится при Enter, нужна форма с onSubmit
+import Button from './shared/Button';
+import styles from './EditableInput.css';
 
 export default class EditableInput extends Component {
   static propTypes = {
@@ -12,7 +12,6 @@ export default class EditableInput extends Component {
 
   state = { text: this.props.text };
 
-  // TODO: не добавлять пустой Note
   handleInputChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -20,22 +19,30 @@ export default class EditableInput extends Component {
     this.setState({ [name]: value });
   };
 
-  handleEditSuccess = () => this.props.onEditSuccess(this.state.text);
+  handleEditSuccess = e => {
+    e.preventDefault();
+
+    this.props.onEditSuccess(this.state.text);
+  };
 
   render() {
     const { text } = this.state;
 
     return (
-      <span>
-        <button onClick={this.handleEditSuccess}>Save</button>
-        <button onClick={this.props.onEditAbort}>Cancel</button>
+      <form className={styles.form} onSubmit={this.handleEditSuccess}>
         <input
+          className={styles.input}
           type="text"
           name="text"
           value={text}
           onChange={this.handleInputChange}
         />
-      </span>
+
+        <div className={styles.actions}>
+          <Button type="submit" text="Save" />
+          <Button onClick={this.props.onEditAbort} text="Cancel" />
+        </div>
+      </form>
     );
   }
 }

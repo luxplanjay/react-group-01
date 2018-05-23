@@ -1,0 +1,17 @@
+@value primary-font-stack from './typography.css';
+@value primary-white-color from './colors.css';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: primary-font-stack;
+  background-color: primary-white-color;
+}

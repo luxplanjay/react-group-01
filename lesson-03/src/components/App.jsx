@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { v4 } from 'uuid';
-import AddNoteForm from './AddNoteForm';
+import NoteEditor from './NoteEditor';
 import NotesList from './NotesList';
 import InlineMessage from './InlineMessage';
+import NotesFilter from './NotesFilter';
 import initialNotes from '../notes';
-import Button from './Button';
+import styles from './App.css';
+
+const getVisibleNotes = (notes, filter) =>
+  notes.filter(note => note.text.includes(filter));
 
 export default class extends Component {
   state = {
     notes: [...initialNotes],
+    filter: '',
   };
 
   addNote = text => {
@@ -23,8 +28,7 @@ export default class extends Component {
     }));
   };
 
-  // TODO: RORO
-  updateNote = (id, text) => {
+  updateNote = ({ id, text }) => {
     this.setState(state => ({
       notes: state.notes.map(
         note => (note.id === id ? { ...note, text } : note),
@@ -32,21 +36,31 @@ export default class extends Component {
     }));
   };
 
+  handleFilterChange = str => {
+    this.setState({ filter: str });
+  };
+
   render() {
-    const { notes } = this.state;
+    const { notes, filter } = this.state;
+
+    const visibleNotes = getVisibleNotes(notes, filter);
 
     return (
-      <div>
-        <AddNoteForm onFormSubmit={this.addNote} />
-        <Button text="Click me" />
+      <div className={styles.container}>
+        <h1 style={{ textAlign: 'center' }}>Notes App</h1>
+
+        <NoteEditor onFormSubmit={this.addNote} />
+
+        <NotesFilter onFilterChange={this.handleFilterChange} filter={filter} />
+
         {notes.length > 0 ? (
           <NotesList
-            notes={notes}
+            notes={visibleNotes}
             onDeleteNote={this.deleteNote}
             onUpdateNote={this.updateNote}
           />
         ) : (
-          <InlineMessage text="No notes yet" />
+          <InlineMessage text="You have zero notes" />
         )}
       </div>
     );

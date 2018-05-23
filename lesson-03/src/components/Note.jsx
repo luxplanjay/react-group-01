@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import EditableInput from './EditableInput';
+import Button from './shared/Button';
+import styles from './Note.css';
 
 export default class Note extends Component {
   static propTypes = {
@@ -14,39 +16,38 @@ export default class Note extends Component {
 
   onEditStart = () => this.setState({ isBeingEdited: true });
 
-  // TODO: объеденить в 1 метод onEditEnd
-  onEditSuccess = () => this.setState({ isBeingEdited: false });
-
-  onEditAbort = () => this.setState({ isBeingEdited: false });
+  onEditEnd = () => this.setState({ isBeingEdited: false });
 
   handleDelete = () => this.props.onDeleteNote(this.props.id);
 
   handleUpdate = text => {
-    this.props.onUpdateNote(this.props.id, text);
-    this.onEditSuccess();
+    this.props.onUpdateNote({ id: this.props.id, text });
+    this.onEditEnd();
   };
 
   render() {
     const { text } = this.props;
     const { isBeingEdited } = this.state;
 
-    // TODO: фрагмент показать
     return (
-      <div>
+      <Fragment>
         {isBeingEdited ? (
           <EditableInput
             text={text}
             onEditSuccess={this.handleUpdate}
-            onEditAbort={this.onEditAbort}
+            onEditAbort={this.onEditEnd}
           />
         ) : (
-          <div>
-            <button onClick={this.handleDelete}>Delete</button>
-            <button onClick={this.onEditStart}>Edit</button>
-            <span>{text}</span>
+          <div className={styles.note}>
+            <p className={styles.text}>{text}</p>
+
+            <div className={styles.actions}>
+              <Button onClick={this.onEditStart} text="Edit" />
+              <Button onClick={this.handleDelete} text="Delete" />
+            </div>
           </div>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

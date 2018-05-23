@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from './shared/Button';
+import styles from './NoteEditor.css';
 
 const INITIAL_STATE = {
-  title: '',
+  text: '',
 };
 
-export default class AddTodoForm extends Component {
+export default class NoteEditor extends Component {
   static propTypes = {
     onFormSubmit: PropTypes.func.isRequired,
   };
@@ -22,23 +24,29 @@ export default class AddTodoForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onFormSubmit(this.state.title);
+    if (this.state.text === '') {
+      return;
+    }
+
+    this.props.onFormSubmit(this.state.text);
 
     this.setState({ ...INITIAL_STATE });
   };
 
   render() {
-    const { title } = this.state;
+    const { text } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
         <input
+          className={styles.input}
           type="text"
-          name="title"
-          placeholder="Enter todo title"
-          value={title}
+          name="text"
+          placeholder="Enter note text..."
+          value={text}
           onChange={this.handleInputChange}
         />
-        <button type="submit">Add Todo</button>
+
+        <Button type="submit" text="Add Note" />
       </form>
     );
   }
