@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 import { v4 } from 'uuid';
-// import Counter from './Counter';
-// import RegisterForm from './RegisterForm';
+import initialTodos from '../todos';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 import InlineMessage from './InlineMessage';
-import initialTodos from '../todos';
 
 export default class extends Component {
   state = {
-    // users: [],
     todos: [...initialTodos],
   };
-
-  // addUser = user => {
-  //   this.setState(prevState => ({
-  //     users: prevState.users.concat([user]),
-  //   }));
-  // };
 
   addTodo = title => {
     this.setState(state => ({
@@ -40,7 +31,6 @@ export default class extends Component {
   };
 
   render() {
-    // const { users } = this.state;
     const { todos } = this.state;
 
     return (
@@ -55,23 +45,6 @@ export default class extends Component {
         ) : (
           <InlineMessage text="No todos yet" />
         )}
-
-        {/* <RegisterForm onFormSubmit={this.addUser} />
-        {users.length > 0 ? (
-          <ul>
-            {this.state.users.map(user => (
-              <li key={user.id}>
-                <p>Login: {user.login}</p>
-                <p>Password: {user.password}</p>
-                <p>Gender: {user.gender}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No users yet!</p>
-        )} */}
-
-        {/* <Counter startValue={15} incrementBy={5} decrementBy={5} /> */}
       </div>
     );
   }

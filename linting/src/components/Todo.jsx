@@ -12,13 +12,13 @@ export default class Todo extends Component {
 
   state = { isBeingEdited: false };
 
-  handleDelete = () => this.props.onDeleteTodo(this.props.id);
-
   onEditStart = () => this.setState({ isBeingEdited: true });
 
   onEditSuccess = () => this.setState({ isBeingEdited: false });
 
   onEditAbort = () => this.setState({ isBeingEdited: false });
+
+  handleDelete = () => this.props.onDeleteTodo(this.props.id);
 
   handleUpdate = text => {
     this.props.onUpdateTodo(this.props.id, text);
@@ -33,17 +33,18 @@ export default class Todo extends Component {
       <div>
         <button onClick={this.handleDelete}>Delete</button>
 
-        {isBeingEdited
-          ? <EditableInput
-              title={title}
-              onEditSuccess={this.handleUpdate}
-              onEditAbort={this.onEditAbort}
-            />
-         : <span>
+        {isBeingEdited ? (
+          <EditableInput
+            title={title}
+            onEditSuccess={this.handleUpdate}
+            onEditAbort={this.onEditAbort}
+          />
+        ) : (
+          <span>
             <button onClick={this.onEditStart}>Edit</button>
             <span>{title}</span>
           </span>
-        }
+        )}
       </div>
     );
   }

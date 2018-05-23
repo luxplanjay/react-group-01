@@ -33,7 +33,6 @@ export default class RegisterForm extends Component {
     };
 
     this.props.onFormSubmit(user);
-
     this.setState({ ...INITIAL_STATE });
   };
 

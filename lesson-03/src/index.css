@@ -1,0 +1,27 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Roboto, Tahoma, sans-serif;
+}
+
+input {
+  font-family: inherit;
+}
+
+button {
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+ul > li {
+  padding: 5px;
+}
