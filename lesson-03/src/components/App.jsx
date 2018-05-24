@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 } from 'uuid';
+import { hot } from 'react-hot-loader';
 import NoteEditor from './NoteEditor';
 import NotesList from './NotesList';
 import InlineMessage from './InlineMessage';
@@ -10,7 +11,7 @@ import styles from './App.css';
 const getVisibleNotes = (notes, filter) =>
   notes.filter(note => note.text.includes(filter));
 
-export default class extends Component {
+class App extends Component {
   state = {
     notes: [...initialNotes],
     filter: '',
@@ -66,3 +67,5 @@ export default class extends Component {
     );
   }
 }
+
+export default hot(module)(App);
