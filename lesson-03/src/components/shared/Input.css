@@ -1,0 +1,23 @@
+@value primary-dark-color from '../../theme/colors.css';
+@value primary-accent-color from '../../theme/colors.css';
+
+.input {
+  display: inline-flex;
+  flex-grow: 1;
+  margin-right: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: 0;
+  padding: 4px;
+  border: none;
+  border-bottom: 1px solid primary-dark-color;
+}
+
+.input::placeholder {
+  font-weight: 400;
+  color: primary-dark-color;
+}
+
+.input:focus {
+  border-color: primary-accent-color;
+}

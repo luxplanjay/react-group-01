@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Input from './shared/Input';
 import styles from './NotesFilter.css';
 
 export default class NotesFilter extends Component {
@@ -18,12 +18,11 @@ export default class NotesFilter extends Component {
 
     return (
       <form className={styles.form}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Filter notes by content..."
+        <Input
+          name="text"
           value={filter}
           onChange={this.handleChange}
+          placeholder="Filter notes by content..."
         />
       </form>
     );

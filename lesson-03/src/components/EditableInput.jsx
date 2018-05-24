@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './shared/Button';
+import Input from './shared/Input';
 import styles from './EditableInput.css';
 
 export default class EditableInput extends Component {
@@ -30,13 +31,7 @@ export default class EditableInput extends Component {
 
     return (
       <form className={styles.form} onSubmit={this.handleEditSuccess}>
-        <input
-          className={styles.input}
-          type="text"
-          name="text"
-          value={text}
-          onChange={this.handleInputChange}
-        />
+        <Input name="text" value={text} onChange={this.handleInputChange} />
 
         <div className={styles.actions}>
           <Button type="submit" text="Save" />

@@ -4,7 +4,3 @@ import App from './components/App';
 import './theme/base.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// if(module.hot) {
-//   module.hot.accept();
-// }
