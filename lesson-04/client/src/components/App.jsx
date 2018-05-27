@@ -47,8 +47,15 @@ class App extends Component {
   fetchAllNotes = () => {
     this.setState({ isLoading: true });
 
-    api.fetchAllNotes().then(notes => {
-      this.setState({ notes, isLoading: false });
+    api.fetchAllNotes().then(({ data, error }) => {
+      if (error) {
+        console.log(error);
+
+        this.setState({ isLoading: false });
+        return;
+      }
+
+      this.setState({ notes: data, isLoading: false });
     });
   };
 
@@ -57,26 +64,36 @@ class App extends Component {
 
     this.setState({ isLoading: true });
 
-    api.addNote(note).then(newNote =>
+    api.addNote(note).then(({ data, error }) => {
+      if (error) {
+        console.log(error);
+
+        this.setState({ isLoading: false });
+        return;
+      }
+
       this.setState(state => ({
-        notes: [...state.notes, newNote],
+        notes: [...state.notes, data],
         isLoading: false,
-      })),
-    );
+      }));
+    });
   };
 
   deleteNote = id => {
     this.setState({ isLoading: true });
 
-    api.deleteNote(id).then(isSuccess => {
-      if (isSuccess) {
-        this.setState(state => ({
-          notes: state.notes.filter(note => note.id !== id),
-          isLoading: false,
-        }));
-      } else {
-        alert('Oops something went wrong :(');
+    api.deleteNote(id).then(({ error }) => {
+      if (error) {
+        console.log(error);
+
+        this.setState({ isLoading: false });
+        return;
       }
+
+      this.setState(state => ({
+        notes: state.notes.filter(note => note.id !== id),
+        isLoading: false,
+      }));
     });
   };
 
@@ -86,14 +103,19 @@ class App extends Component {
 
     this.setState({ isLoading: true });
 
-    api.updateNote(noteToUpdate).then(updatedNote =>
+    api.updateNote(noteToUpdate).then(({ data, error }) => {
+      if (error) {
+        console.log(error);
+
+        this.setState({ isLoading: false });
+        return;
+      }
+
       this.setState(state => ({
-        notes: state.notes.map(
-          n => (n.id === updatedNote.id ? updatedNote : n),
-        ),
+        notes: state.notes.map(n => (n.id === data.id ? data : n)),
         isLoading: false,
-      })),
-    );
+      }));
+    });
   };
 
   handleFilterChange = str => {
@@ -106,13 +128,11 @@ class App extends Component {
     const { notes, filter, isLoading } = this.state;
     const visibleNotes = getVisibleNotes(notes, filter);
 
-    console.log(isLoading)
-
     return (
       <div className={styles.container}>
         <h1 style={{ textAlign: 'center' }}>Notes App</h1>
 
-        {isLoading && <Loader />}
+        {isLoading && <Loader width={80} height={80} />}
 
         <NoteEditor onFormSubmit={this.addNote} />
 

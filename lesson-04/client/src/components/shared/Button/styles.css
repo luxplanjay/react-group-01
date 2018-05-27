@@ -1,6 +1,6 @@
-@value primary-accent-color from '../../theme/colors.css';
-@value secondary-accent-color from '../../theme/colors.css';
-@value primary-white-color from '../../theme/colors.css';
+@value primary-accent-color from '../../../theme/colors.css';
+@value secondary-accent-color from '../../../theme/colors.css';
+@value primary-white-color from '../../../theme/colors.css';
 
 .button {
   display: inline-block;

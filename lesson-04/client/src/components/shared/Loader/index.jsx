@@ -22,13 +22,13 @@ const Loader = ({ width, height }) => (
 );
 
 Loader.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 Loader.defaultProps = {
-  width: '40px',
-  height: '40px',
+  width: 40,
+  height: 40,
 };
 
 export default Loader;
