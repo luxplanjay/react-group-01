@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "json-server db.json --routes routes.json --port 3001"
+  },
+  "dependencies": {
+    "faker": "^4.1.0",
+    "json-server": "^0.12.2",
+    "nodemon": "^1.17.5"
+  }
+}
