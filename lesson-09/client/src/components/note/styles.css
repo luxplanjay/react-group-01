@@ -1,0 +1,21 @@
+@value primary-dark-color from '../../theme/colors.css';
+
+.note {
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin: 0;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  margin-right: 24px;
+  color: primary-dark-color;
+}

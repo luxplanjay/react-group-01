@@ -1,0 +1,5 @@
+https://www.codementor.io/ayushgupta/how-to-use-json-server-to-create-mock-apis-0-lci958ear
+
+https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server-36da8680136d
+
+
