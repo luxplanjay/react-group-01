@@ -1,0 +1,17 @@
+.form {
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 24px;
+  font-family: inherit;
+  font-size: 16px;
+  resize: none;
+}
