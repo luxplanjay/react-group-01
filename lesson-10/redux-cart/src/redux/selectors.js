@@ -9,12 +9,3 @@ export const getCartProducts = createSelector(
   (productsIds, allProducts) =>
     allProducts.filter(product => productsIds.includes(product.id)),
 );
-
-// const getProductPriceById = (state, id) => {};
-
-// const getProductQuantityById = (state, id) => {};
-
-// export const getTotalPrice = createSelector(
-//   [getProductPriceById, getProductQuantityById],
-//   (price, quantity) => price * quantity,
-// );
