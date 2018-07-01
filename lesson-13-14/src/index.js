@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history} basename="/react-group-01/lesson-13-14/build">
+    <ConnectedRouter history={history}>
       <Route path="/" component={App} />
     </ConnectedRouter>
   </Provider>,

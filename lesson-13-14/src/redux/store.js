@@ -7,7 +7,9 @@ import sessionMiddleware from './middleware/session';
 import articles from './reducers/articles';
 import session from './reducers/session';
 
-export const history = createHistory();
+export const history = createHistory({
+  basename: '/react-group-01/lesson-13-14/build',
+});
 
 const rootReducer = combineReducers({
   session,
