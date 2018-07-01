@@ -25,5 +25,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://axzerk.github.io/react-group-01/build"
+  "homepage": "https://axzerk.github.io/react-group-01/lesson-13-14/build"
 }
