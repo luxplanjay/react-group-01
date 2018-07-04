@@ -11,5 +11,3 @@
 - ✔️ Сохраняем состояние сессии в localStorage через session middleware
 - ✔️ HOC requireAuth vs Protected(Public)Route vs Middleware
 - ✔️ Деплой на gh-pages https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#building-for-relative-paths
-
-https://axzerk.github.io/my-app/build/
